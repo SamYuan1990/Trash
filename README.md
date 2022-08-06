@@ -1,0 +1,2 @@
+# Trash
+Self Trash
