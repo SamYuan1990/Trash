@@ -26,3 +26,5 @@ lattigo/rlwe和lattigo/drlwe：基于 RLWE 的通用多方同态加密的通用�
 
 Lattigo方案的可行性分析
 使用lattigo/bfv来作为全同态加密合约的支撑工具，使得智能合约失去了浮点数计算能力。本质上来讲，对精度要求严苛的场景都不应使用浮点数，浮点数应通过同比扩大或者同比缩小来消除小数或还原小数。同时lattigo/bfv提供加运算、减运算、非运算、模运算、乘运算、除运算等，满足基本运算需求。Fabric的合约具有完整且独立的运行环境，理论上任意的应用程序在接入合约API后都可以作为合约运行，满足lattigo的运行需求。
+
+ref https://mp.weixin.qq.com/s/YNPv3SX3iij7nscxGlFDEA
