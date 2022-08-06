@@ -7,7 +7,7 @@ on:
   schedule:
     - cron: "0 0 * */3 0" # https://crontab.guru/#0_0_*_*/3_0
 jobs:
-  unit-test:
+  lattigoLearninng:
     runs-on: ubuntu-latest
     steps:
         - uses: actions/checkout@main

@@ -13,7 +13,7 @@ For any idea, or things to learn and recording. Welcome to open any issue for di
 ## Done
 
 ## Todo
-- [ ] [lattigo](https://github.com/tuneinsight/lattigo)
+- [x] [lattigo](https://github.com/tuneinsight/lattigo) 加 减 乘 [![Github workflow test](https://github.com/SamYuan1990/Trash/actions/workflows/lattigo.yaml/badge.svg)](https://github.com/SamYuan1990/Trash/actions/workflows/lattigo.yaml)
 - [ ] PBFT
 - [ ] [qiskit](https://github.com/Qiskit/qiskit)
 - [ ] hotstuff
