@@ -1,0 +1,18 @@
+name: Github workflow test
+on:
+  pull_request:
+  push:
+    branches: # pushing tags is also considered as a push. Exclude this here.
+      - "*" 
+  schedule:
+    - cron: "0 0 * */3 0" # https://crontab.guru/#0_0_*_*/3_0
+jobs:
+  lattigoLearninng:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@main
+        - run: docker build -t samqiskit:latest .
+          name: docker build
+          working-directory: qiskit
+        - run: docker run samqiskit:latest
+          name: docker run
