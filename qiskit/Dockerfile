@@ -4,7 +4,8 @@ RUN apt-get update
 RUN apt-get install -y python-is-python3 curl
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 RUN python get-pip.py
-RUN pip install qiskit
+ADD requirements.txt .
+RUN pip install -r requirements.txt
 
 RUN mkdir -p /tmp/qiskit
 WORKDIR /tmp/qiskit
