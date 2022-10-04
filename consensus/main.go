@@ -10,6 +10,7 @@ import (
 
 var port string
 var dataC chan string
+var LPort string
 var port0 string
 var port1 string
 var port2 string
@@ -19,6 +20,7 @@ var port4 string
 func main() {
 	port = os.Args[1]
 	fmt.Println("run at ", port)
+	LPort = os.Args[2]
 	dataC = make(chan string, 10)
 	port0 = "1000"
 	port1 = "1001"
@@ -44,22 +46,30 @@ func dataHandler(w http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		fmt.Errorf("%s", fmt.Sprintf("failed to write response: %v", err))
 	}
-	if port != port0 {
-		sendToOthers(data, port0)
+	if port == LPort {
+		if port != port0 {
+			sendToOthers(data, port0)
+		}
+		if port != port1 {
+			sendToOthers(data, port1)
+		}
+		if port != port2 {
+			sendToOthers(data, port2)
+		}
+		if port != port3 {
+			sendToOthers(data, port3)
+		}
+		if port != port4 {
+			sendToOthers(data, port4)
+		}
+		dataC <- data
+	} else {
+		fwToLeader(LPort, data)
 	}
-	if port != port1 {
-		sendToOthers(data, port1)
-	}
-	if port != port2 {
-		sendToOthers(data, port2)
-	}
-	if port != port3 {
-		sendToOthers(data, port3)
-	}
-	if port != port4 {
-		sendToOthers(data, port4)
-	}
-	dataC <- data
+}
+
+func fwToLeader(LPort, data string) {
+	http.Get("http://127.0.0.1:" + LPort + "/data?data=" + data)
 }
 
 func sendToOthers(input, port string) {
