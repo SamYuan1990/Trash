@@ -22,11 +22,11 @@ func main() {
 	fmt.Println("run at ", port)
 	LPort = os.Args[2]
 	dataC = make(chan string, 10)
-	port0 = "1000"
-	port1 = "1001"
-	port2 = "1002"
-	port3 = "1003"
-	port4 = "1004"
+	port0 = "10000"
+	port1 = "10001"
+	port2 = "10002"
+	port3 = "10003"
+	port4 = "10004"
 
 	http.HandleFunc("/data", dataHandler)
 	http.HandleFunc("/consensus", consensusHandler)

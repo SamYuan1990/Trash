@@ -88,33 +88,33 @@ var _ = Describe("Main", func() {
 
 	Context("5 nodes", func() {
 		It("runs", func() {
-			address0 := "1000"
+			address0 := "10000"
 			cmd := exec.Command(Bin, address0)
 			Session0, err = gexec.Start(cmd, nil, nil)
 			Expect(err).NotTo(HaveOccurred())
 
-			address1 := "1001"
+			address1 := "10001"
 			cmd1 := exec.Command(Bin, address1)
 			Session1, err = gexec.Start(cmd1, nil, nil)
 			Expect(err).NotTo(HaveOccurred())
 
-			address2 := "1002"
+			address2 := "10002"
 			cmd2 := exec.Command(Bin, address2)
 			Session2, err = gexec.Start(cmd2, nil, nil)
 			Expect(err).NotTo(HaveOccurred())
 
-			address3 := "1003"
+			address3 := "10003"
 			cmd3 := exec.Command(Bin, address3)
 			Session3, err = gexec.Start(cmd3, nil, nil)
 			Expect(err).NotTo(HaveOccurred())
 
-			address4 := "1004"
+			address4 := "10004"
 			cmd4 := exec.Command(Bin, address4)
 			Session4, err = gexec.Start(cmd4, nil, nil)
 			Expect(err).NotTo(HaveOccurred())
 			time.Sleep(5 * time.Second)
 
-			resp, err := http.Get("http://localhost:1000/data?data=123")
+			resp, err := http.Get("http://localhost:10000/data?data=123")
 			Expect(err).NotTo(HaveOccurred())
 			Expect(resp.StatusCode).To(Equal(http.StatusOK))
 			Eventually(Session0.Out).Should(Say("123"))
