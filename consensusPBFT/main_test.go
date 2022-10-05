@@ -114,7 +114,7 @@ var _ = Describe("Main", func() {
 			Expect(err).NotTo(HaveOccurred())
 			time.Sleep(5 * time.Second)
 
-			resp, err := http.Get("http://127.0.0.1:1000/data?data=123")
+			resp, err := http.Get("http://localhost:1000/data?data=123")
 			Expect(err).NotTo(HaveOccurred())
 			Expect(resp.StatusCode).To(Equal(http.StatusOK))
 			Eventually(Session0.Out).Should(Say("123"))
