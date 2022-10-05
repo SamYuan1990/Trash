@@ -1,4 +1,4 @@
-module consensus
+module consensusCFT
 
 go 1.18
 
