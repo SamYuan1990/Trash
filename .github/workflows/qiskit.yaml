@@ -1,4 +1,4 @@
-name: Github workflow test
+name: qiskit
 on:
   pull_request:
   push:

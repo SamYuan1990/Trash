@@ -12,7 +12,7 @@ For any idea, or things to learn and recording. Welcome to open any issue for di
 ## List
 - [x] [lattigo](https://github.com/tuneinsight/lattigo) 加 减 乘 [![Github workflow test](https://github.com/SamYuan1990/Trash/actions/workflows/lattigo.yaml/badge.svg)](https://github.com/SamYuan1990/Trash/actions/workflows/lattigo.yaml)
 - [x] [qiskit](https://github.com/Qiskit/qiskit) sample [![Github workflow test](https://github.com/SamYuan1990/Trash/actions/workflows/qiskit.yaml/badge.svg)](https://github.com/SamYuan1990/Trash/actions/workflows/qiskit.yaml)
-- [ ] consensus（pbft,raft,hotstuff）
+- [x] consensus（pbft,raft,hotstuff）[![Github workflow test](https://github.com/SamYuan1990/Trash/actions/workflows/consensus.yaml/badge.svg)](https://github.com/SamYuan1990/Trash/actions/workflows/consensus.yaml)
 - [ ] Operator
 - [ ] OpenSSF
 - [ ] Tekton

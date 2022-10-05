@@ -1,4 +1,4 @@
-name: Github workflow test
+name: consensus
 on:
   pull_request:
   push:
