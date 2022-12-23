@@ -30,7 +30,17 @@ result = job.result()
 
 # Returns counts
 counts = result.get_counts(compiled_circuit)
-print("\nTotal count for 00 and 11 are:",counts)
+print("\nTotal count for 00 and 11 in 1000 times are:",counts)
+
+# Execute the circuit on the qasm simulator
+job = simulator.run(compiled_circuit, shots=1)
+
+# Grab results from the job
+result = job.result()
+
+# Returns counts
+counts = result.get_counts(compiled_circuit)
+print("\nTotal count for 00 and 11 in 1 times are:",counts)
 
 # Draw the circuit
-circuit.draw()
+#circuit.draw()
