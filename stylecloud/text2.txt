@@ -1,0 +1,7 @@
+As a summary of year 2022, I used to commit code at night time from 19:00 to 23:00 as perosnal contribution.
+There are 753 contributions in this year. Best streak 8 days, hightest in a day at 25, Avg 1.91 commits in a day.
+Contributed to 67 reporitories. as sustainable-computing-io kepler, hyperledger-labs PerformanceSandBox,  Hyperledger-TWGC fabric-admin-sdk
+45% commits, 11% code review 20% issue open and 24% pull requests.
+The topic I am contributed with among sustainable-computing, blockchain, OTel, and also some personal learnning on qiskit.
+For publishs, I took part in 2022 China OpenSource BlueBook
+and also delivered a hyperledger meet up.
