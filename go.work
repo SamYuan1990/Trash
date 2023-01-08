@@ -3,3 +3,4 @@ go 1.18
 use ./controller-runtime
 use ./consensusPBFT
 use ./consensusCFT
+use ./lattigoLearninng
