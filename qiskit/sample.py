@@ -1,10 +1,9 @@
-import numpy as np
-from qiskit import QuantumCircuit, transpile
-from qiskit.providers.aer import QasmSimulator
-from qiskit.visualization import plot_histogram
+import qiskit
+from qiskit import QuantumCircuit
+from qiskit_aer import AerSimulator
 
 # Use Aer's qasm_simulator
-simulator = QasmSimulator()
+simulator = AerSimulator()
 
 # Create a Quantum Circuit acting on the q register
 circuit = QuantumCircuit(2, 2)
@@ -20,27 +19,16 @@ circuit.measure([0,1], [0,1])
 
 # compile the circuit down to low-level QASM instructions
 # supported by the backend (not needed for simple circuits)
-compiled_circuit = transpile(circuit, simulator)
+# compiled_circuit = transpile(circuit, simulator)
 
 # Execute the circuit on the qasm simulator
-job = simulator.run(compiled_circuit, shots=1000)
+# job = simulator.run(compiled_circuit, shots=1000)
 
 # Grab results from the job
-result = job.result()
+# result = job.result()
+
+result_ideal = qiskit.execute(circuit, simulator).result()
+counts_ideal = result_ideal.get_counts(0)
 
 # Returns counts
-counts = result.get_counts(compiled_circuit)
-print("\nTotal count for 00 and 11 in 1000 times are:",counts)
-
-# Execute the circuit on the qasm simulator
-job = simulator.run(compiled_circuit, shots=1)
-
-# Grab results from the job
-result = job.result()
-
-# Returns counts
-counts = result.get_counts(compiled_circuit)
-print("\nTotal count for 00 and 11 in 1 times are:",counts)
-
-# Draw the circuit
-#circuit.draw()
+print("\nTotal count for 00 and 11 in 1000 times are:",counts_ideal)

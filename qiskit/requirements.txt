@@ -1,6 +1,3 @@
-qiskit==0.34.1
-matplotlib==3.5.1
-pylatexenc==2.10
-sympy==1.9
-kaleidoscope==0.0.13
-ipywidgets==7.6.5
+qiskit==0.39.5
+qiskit_aer==0.11.0
+qiskit_ibmq_provider==0.19.2
