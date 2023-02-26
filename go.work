@@ -1,6 +1,8 @@
-go 1.18
+go 1.20
 
 use ./controller-runtime
 use ./consensusPBFT
 use ./consensusCFT
 use ./lattigoLearninng
+use ./otelPrometheus
+use ./otel

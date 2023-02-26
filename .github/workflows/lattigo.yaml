@@ -13,7 +13,7 @@ jobs:
         - uses: actions/checkout@main
         - uses: actions/setup-go@main
           with:
-            go-version: 1.18
+            go-version: 1.20
         - run: go run main.go
           name: unit test
           working-directory: lattigoLearninng
