@@ -6,3 +6,5 @@ use ./consensusCFT
 use ./lattigoLearninng
 use ./otelPrometheus
 use ./otel
+use ./IntExample
+use ./prometheusExample
