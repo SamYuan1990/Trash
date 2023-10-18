@@ -1,6 +1,8 @@
 package main
 
-import "github.com/open-quantum-safe/liboqs-go/oqs"
+import (
+	"github.com/open-quantum-safe/liboqs-go/oqs"
+)
 
 func main() {
 	msg := []byte("test")

@@ -1,4 +1,4 @@
-name: build
+name: buildPQC
 
 on:
   push:
@@ -34,8 +34,8 @@ jobs:
         uses: docker/build-push-action@v3
         if: github.ref == 'refs/heads/main'
         with:
-          context: ./go_crypto
+          context: ./go_pqc
           platforms: linux/amd64
           push: true
           tags: ghcr.io/samyuan1990/trash
-          labels: Crypto
+          labels: PostCrypto
