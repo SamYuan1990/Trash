@@ -37,5 +37,5 @@ jobs:
           context: ./go_pqc
           platforms: linux/amd64,linux/s390x,linux/arm64
           push: true
-          tags: ghcr.io/samyuan1990/trash
+          tags: ghcr.io/samyuan1990/trash:postcrypto
           labels: postcrypto
