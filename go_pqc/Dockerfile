@@ -6,7 +6,8 @@ COPY main.go .
 COPY go.mod .
 COPY go.sum .
 COPY vendor .
-#ENV GOPROXY=https://goproxy.cn,direct
+#ENV GO111MODULE=auto
+ENV GOPROXY=https://goproxy.cn,direct
 
 #RUN go mod tidy
 RUN go build main.go
