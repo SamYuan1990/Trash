@@ -8,7 +8,8 @@ COPY go.sum .
 COPY vendor .
 #ENV GO111MODULE=auto
 ENV GOPROXY=https://goproxy.cn,direct
-
+RUN apt-get update
+RUN apt-get install -y --reinstall ca-certificates
 #RUN go mod tidy
 RUN go build main.go
 #RUN ls main
