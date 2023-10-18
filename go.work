@@ -1,10 +1,21 @@
-go 1.20
+go 1.21.1
 
 use ./controller-runtime
+
 use ./consensusPBFT
+
 use ./consensusCFT
+
 use ./lattigoLearninng
+
 use ./otelPrometheus
+
 use ./otel
+
 use ./IntExample
-use ./prometheusExample
+
+use (
+	./go_crypto
+	./prometheusExample
+	./go_pqc
+)

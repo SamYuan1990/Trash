@@ -1,6 +1,6 @@
 module lattigoLearninng
 
-go 1.20
+go 1.21
 
 require github.com/tuneinsight/lattigo/v3 v3.0.5
 
