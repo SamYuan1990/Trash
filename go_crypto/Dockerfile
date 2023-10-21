@@ -1,4 +1,4 @@
-From ghcr.io/samyuan1990/liboqs-go:latest
+From golang:1.21
 
 RUN mkdir -p /app
 WORKDIR /app

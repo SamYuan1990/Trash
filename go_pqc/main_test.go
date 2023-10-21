@@ -6,7 +6,7 @@ import (
 	"github.com/open-quantum-safe/liboqs-go/oqs"
 )
 
-func BenchmarkEcdsaVerify(t *testing.B) {
+func BenchmarkDilithium2SignVerify(t *testing.B) {
 	t.ReportAllocs()
 	msg := []byte("test")
 	var signer, verifier oqs.Signature
@@ -17,9 +17,9 @@ func BenchmarkEcdsaVerify(t *testing.B) {
 	_ = signer.Init(sigName, nil)
 	_ = verifier.Init(sigName, nil)
 	pubKey, _ := signer.GenerateKeyPair()
-	signature, _ := signer.Sign(msg)
 	t.ResetTimer()
 	for i := 0; i < t.N; i++ {
+		signature, _ := signer.Sign(msg)
 		isverify, _ := verifier.Verify(msg, signature, pubKey)
 		if !isverify {
 			t.Fatal("Verify error\n")
