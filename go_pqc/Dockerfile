@@ -14,4 +14,4 @@ RUN apt-get install -y --reinstall ca-certificates
 RUN go build main.go
 #RUN ls main
 
-CMD [main]
+CMD ["go","test","-v","-bench=.","--count=10"]

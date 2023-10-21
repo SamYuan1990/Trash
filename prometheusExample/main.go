@@ -28,6 +28,25 @@ func newDescforTest() *prometheus.Desc {
 	)
 }
 
+func newDescforTest_1(i int) *prometheus.Desc {
+	return prometheus.NewDesc(
+		"dummy"+strconv.Itoa(i),
+		"just a dummy",
+		[]string{"instance"}, nil,
+	)
+}
+
+func Print(str string, MemStats *runtime.MemStats, after *runtime.MemStats) {
+	fmt.Printf(str+"\t%d\t%d\t%d\t%d\t%d\t%d\t%d\n",
+		after.TotalAlloc-MemStats.TotalAlloc,
+		after.HeapAlloc-MemStats.HeapAlloc,
+		after.Mallocs-MemStats.Mallocs,
+		after.NextGC-MemStats.NextGC,
+		after.GCSys-MemStats.GCSys,
+		after.NumGC-MemStats.NumGC,
+		after.NumForcedGC-MemStats.NumForcedGC)
+}
+
 /*
 1. we do samilar with prometheus client.
 1.1 create a channel
@@ -64,13 +83,7 @@ func ChannelBased() {
 	}
 	after := &runtime.MemStats{}
 	runtime.ReadMemStats(after)
-	fmt.Println("Channel")
-	fmt.Println(after.TotalAlloc - MemStats.TotalAlloc)
-	fmt.Println(after.HeapAlloc - MemStats.HeapAlloc)
-	fmt.Println(after.Mallocs - MemStats.Mallocs)
-	fmt.Println(after.NextGC - MemStats.NextGC)
-	fmt.Println(after.GCSys - MemStats.GCSys)
-	fmt.Println(after.NumGC - MemStats.NumGC)
+	Print("Channel", MemStats, after)
 }
 
 /*
@@ -103,17 +116,63 @@ func BaseLine() {
 	}
 	after := &runtime.MemStats{}
 	runtime.ReadMemStats(after)
-	fmt.Println("baseline")
-	fmt.Println(after.TotalAlloc - MemStats.TotalAlloc)
-	fmt.Println(after.HeapAlloc - MemStats.HeapAlloc)
-	fmt.Println(after.Mallocs - MemStats.Mallocs)
-	fmt.Println(after.NextGC - MemStats.NextGC)
-	fmt.Println(after.GCSys - MemStats.GCSys)
-	fmt.Println(after.NumGC - MemStats.NumGC)
+	Print("base", MemStats, after)
+}
+
+/*
+1. we do samilar with prometheus client.
+1.1 create a channel
+1.2 convert basic data into prometheus type and feed into channel
+1.3 make a map
+1.4 if data in map, then refresh the data instead create a new one
+1.5 copy channel
+1.6 read from channel and close channel
+1.7 loop from 1.2 to 1.4 for 4 times as data refresh
+*/
+func ChannelTest() {
+	MemStats := &runtime.MemStats{}
+	runtime.ReadMemStats(MemStats)
+	the_map := make(map[int]prometheus.Metric)
+	//the_2nd_map := make(map[int]*prometheus.Desc)
+	for k := 0; k < 3; k++ {
+		theChan := make(chan prometheus.Metric, 1000)
+		for i := 0; i < 1000; i++ {
+			instance := &Basic{
+				Value: i,
+			}
+			//desc, ok := the_2nd_map[i%100]
+			//if !ok {
+			desc := newDescforTest_1(i)
+			//the_2nd_map[i%100] = desc
+			//}
+			the_map[i%100] = prometheus.MustNewConstMetric(
+				desc,
+				prometheus.GaugeValue,
+				float64(instance.Value),
+				"dummy",
+			)
+			theChan <- the_map[i%100]
+		}
+		newChan := theChan
+		close(theChan)
+		for j := 0; j < 1000; j++ {
+			test := <-newChan
+			if test == nil {
+				fmt.Errorf("empty")
+				os.Exit(1)
+			}
+		}
+	}
+	after := &runtime.MemStats{}
+	runtime.ReadMemStats(after)
+	Print("Ch est", MemStats, after)
 }
 
 func main() {
 	//for i := 0; i < 10; i++ {
+
+	fmt.Printf("case \t TotalAlloc \t HeapAlloc \t Mallocs" +
+		"NextGC \t GCSys \t NumGC \t NumForcedGC \n")
 	debug.FreeOSMemory()
 	BaseLine()
 	//}
@@ -122,4 +181,6 @@ func main() {
 	debug.FreeOSMemory()
 	ChannelBased()
 	//}
+	debug.FreeOSMemory()
+	ChannelTest()
 }
