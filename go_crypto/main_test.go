@@ -4,6 +4,7 @@ import (
 	"crypto/ecdsa"
 	"crypto/elliptic"
 	"crypto/rand"
+	"strconv"
 	"testing"
 )
 
@@ -16,6 +17,7 @@ func BenchmarkEcdsaSignVerify(t *testing.B) {
 	}
 	t.ResetTimer()
 	for i := 0; i < t.N; i++ {
+		msg = []byte(strconv.Itoa(i))
 		r, s, _ := ecdsa.Sign(rand.Reader, priv, msg)
 		isverify := ecdsa.Verify(&priv.PublicKey, msg, r, s)
 		if !isverify {

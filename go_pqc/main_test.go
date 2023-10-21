@@ -1,6 +1,7 @@
 package main
 
 import (
+	"strconv"
 	"testing"
 
 	"github.com/open-quantum-safe/liboqs-go/oqs"
@@ -19,6 +20,7 @@ func BenchmarkDilithium2SignVerify(t *testing.B) {
 	pubKey, _ := signer.GenerateKeyPair()
 	t.ResetTimer()
 	for i := 0; i < t.N; i++ {
+		msg = []byte(strconv.Itoa(i))
 		signature, _ := signer.Sign(msg)
 		isverify, _ := verifier.Verify(msg, signature, pubKey)
 		if !isverify {
